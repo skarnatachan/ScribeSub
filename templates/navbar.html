@@ -1,0 +1,75 @@
+<nav class="bg-olive-200 sticky w-full z-20 top-0 inset-s-0 border-b-olive-100">
+    <div class="max-w-7xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="{% url 'accounts:home' %}" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <span class="brand self-center text-2xl italic text-heading font-bold whitespace-nowrap">
+                ScribeSub
+                {% if user.is_authenticated %}
+                    {% if user.is_writer %}
+                        | Writer
+                    {% else %}
+                        | Client
+                    {% endif %}
+                {% endif %}
+            </span>
+        </a>
+        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-search">
+            <ul class="font-medium text-base flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-neutral-primary">
+                {% if user.is_authenticated %}
+                    {% if user.is_writer %}
+                        <li>
+                            <a href="{% url 'writer:create-article' %}"
+                               class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Create
+                                Article</a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="{% url 'client:browse-articles' %}"
+                               class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Browse
+                                Article</a>
+                        </li>
+                    {% endif %}
+                    {% if user.is_writer %}
+                        <li>
+                            <a href="{% url 'writer:my-articles' %}"
+                               class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">My
+                                Articles</a>
+                        </li>
+                    {% endif %}
+                    <li>
+                        <a href="{% url 'writer:account-management' %}"
+                           class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Account
+                            Management</a>
+                    </li>
+                    <li>
+                        {% if user.is_writer %}
+                            <a href="{% url 'writer:writer-dashboard' %}"
+                               class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Dashboard</a>
+                        {% else %}
+                            <a href="{% url 'client:client-dashboard' %}"
+                               class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Dashboard</a>
+                        {% endif %}
+                    </li>
+                    <li>
+                        <form method="POST" action="{% url 'accounts:user-logout' %}"
+                              class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">
+                            {% csrf_token %}
+                            <button type="submit"
+                                    class="nav-link text-headinghover:text-gray-800 transition-colors bg-transparent border-none cursor-pointer p-0">
+                                Logout
+                            </button>
+                        </form>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{% url 'accounts:register' %}"
+                           class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Register</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'accounts:my-login' %}"
+                           class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Login</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

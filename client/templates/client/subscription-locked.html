@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block title %}Subscription Locked{% endblock title %}
+{% block content %}
+    <div class="container mt-16 mx-auto rounded-2xl p-12 bg-amber-300 ">
+        <div class="flex flex-col justify-center items-center space-y-6">
+            <h1 class="text-2xl font-semibold text-center"><i class="fa-solid fa-lock"></i>&nbsp;&nbsp;Sorry,
+                subscription is locked.
+            </h1>
+            <p>Please subscribe to browse through your articles!</p>
+            <div>
+                <a href="{% url 'client:subscription-plans' %}"
+                   class="px-8 py-2 rounded-xl text-xl bg-emerald-600 text-white">Subscribe</a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

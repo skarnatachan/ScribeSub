@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block title %}Update Article{% endblock title %}
+{% block extra_head %}
+    {{ form.media }}
+{% endblock extra_head %}
+{% block content %}
+    <section class="bg-gray-50 dark:bg-gray-900 mt-6 ">
+        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
+            <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md md:max-w-3xl xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                    <h1 class="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                        Update Article
+                    </h1>
+                    <form class="space-y-4 md:space-y-6" method="post">
+                        {% csrf_token %}
+                        {# ── Non-field errors ── #}
+                        {% if form.non_field_errors %}
+                            <div class="p-3 rounded-lg bg-red-50 border border-red-300">
+                                {% for error in form.non_field_errors %}
+                                    <p class="text-sm text-red-600">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        {#  Title Field  #}
+                        <div>
+                            <label for="title"
+                                   class="block mb-2 text-base font-medium text-gray-900 dark:text-white">Title</label>
+                            {% if form.title.errors %}
+                                {% render_field form.title id="title" type="text" class="bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-red-500 dark:placeholder-gray-400 dark:text-white" placeholder="Title" %}
+                            {% else %}
+                                {% render_field form.title id="title" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Title" %}
+                            {% endif %}
+                            <p class="text-xs">{{ form.title.help_text }}</p>
+                            {% for error in form.title.errors %}
+                                <p class="mt-1 text-xs text-red-600">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        {#  Content Field  #}
+                        <div>
+                            <label for="content"
+                                   class="block mb-2 text-base font-medium text-gray-900 dark:text-white">Intro</label>
+                            {% if form.content.errors %}
+                                {% render_field form.content type="text" id="content" class="md:h-64 bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-red-500 dark:placeholder-gray-400 dark:text-white" placeholder="Content" %}
+                            {% else %}
+                                {% render_field form.content type="text" id="content" class="md:h-64 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Content" %}
+                            {% endif %}
+                            <p class="text-xs">{{ form.content.help_text }}</p>
+                            {% for error in form.content.errors %}
+                                <p class="mt-1 text-xs text-red-600">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        {#  is_premium Field  #}
+                        <div>
+                            <label for="is_premium"
+                                   class="block mb-2 text-base font-medium text-gray-900 dark:text-white">Is this a
+                                premium article?
+                            </label>
+                            {% if form.is_premium.errors %}
+                                {% render_field form.is_premium type="checkbox" id="is_premium" class="cursor-pointer bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block p-2.5 dark:bg-gray-700 dark:border-red-500 dark:placeholder-gray-400 dark:text-white" %}
+                            {% else %}
+                                {% render_field form.is_premium type="checkbox" id="is_premium" class="cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %}
+                            {% endif %}
+                            <p class="text-xs">{{ form.is_premium.help_text }}</p>
+                            {% for error in form.is_premium.errors %}
+                                <p class="mt-1 text-xs text-red-600">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="flex items-center justify-between gap-6">
+                            <button type="submit"
+                                    class="w-full cursor-pointer text-white bg-sky-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                Update
+                            </button>
+                            <a href="{% url 'writer:my-articles' %}"
+                               class="w-full cursor-pointer text-white bg-red-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

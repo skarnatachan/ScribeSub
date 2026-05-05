@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block title %}Subscription Plan{% endblock title %}
+{% block content %}
+    <div class="max-w-3xl container mt-16 mx-auto rounded-2xl p-6 bg-amber-300">
+        <h1 class="text-2xl font-semibold text-center"> Subscription Plans </h1>
+    </div>
+    <div class="grid grid-cols-1 gap-2 md:grid-cols-2">
+        <div class="mt-16 mx-auto rounded-2xl p-6 bg-amber-50 md:w-3xl border-2 border-amber-200 shadow-lg">
+            <h1 class="text-2xl font-semibold text-center"> Standard Subscription </h1>
+            <br>
+            <hr>
+            <br>
+            <h2 class="text-2xl font-semibold text-center"> Subscribe to get access to our standard articles
+                access: </h2>
+            <h3 class="text-xl font-semibold text-center">(Limited article access)</h3>
+            <br>
+            <hr>
+            <br>
+            <div>
+                <div id="paypal-button-container-P-9B0178269F0217137NH3R2NQ"></div>
+                <script src="https://www.paypal.com/sdk/js?client-id=Ab7tdAK9v6jtgmdalmYnvim8sXA_fwWM5enLTwRsKmIIE5LH20j5P7FPBup93CwPI5UNo962EtSeFTQ6&vault=true&intent=subscription"
+                        data-sdk-integration-source="button-factory"></script>
+                <script>
+                    paypal.Buttons({
+                        style: {
+                            shape: 'pill',
+                            color: 'silver',
+                            layout: 'vertical',
+                            label: 'subscribe'
+                        },
+                        createSubscription: function (data, actions) {
+                            return actions.subscription.create({
+                                /* Creates the subscription */
+                                plan_id: 'P-9B0178269F0217137NH3R2NQ'
+                            });
+                        },
+                        onApprove: function (data, actions) {
+                            var current_url = '/client/create-subscription/' + data.subscriptionID + '/Standard';
+                            window.open(current_url, '_self');
+                        }
+                    }).render('#paypal-button-container-P-9B0178269F0217137NH3R2NQ'); // Renders the PayPal button
+                </script>
+            </div>
+        </div>
+        <div class="mt-16 mx-auto rounded-2xl p-6 bg-amber-50 md:w-3xl border-2 border-amber-200 shadow-lg">
+            <h1 class="text-2xl font-semibold text-center"><i class="fa-solid fa-crown"></i> Premium Subscription </h1>
+            <br>
+            <hr>
+            <br>
+            <h2 class="text-2xl font-semibold text-center"> Enhance your knowledge and skills by registering Premium
+                access: </h2>
+            <h3 class="text-xl font-semibold text-center">(Full article access)</h3>
+            <br>
+            <hr>
+            <br>
+            <div>
+                <div id="paypal-button-container-P-24U33182A0108840FNH3SCHA"></div>
+                <script>
+                    paypal.Buttons({
+                        style: {
+                            shape: 'pill',
+                            color: 'gold',
+                            layout: 'vertical',
+                            label: 'subscribe'
+                        },
+                        createSubscription: function (data, actions) {
+                            return actions.subscription.create({
+                                /* Creates the subscription */
+                                plan_id: 'P-24U33182A0108840FNH3SCHA'
+                            });
+                        },
+                        onApprove: function (data, actions) {
+                            var current_url = '/client/create-subscription/' + data.subscriptionID + '/Premium';
+                            window.open(current_url, '_self');
+                        }
+                    }).render('#paypal-button-container-P-24U33182A0108840FNH3SCHA'); // Renders the PayPal button
+                </script>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

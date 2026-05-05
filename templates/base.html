@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://kit.fontawesome.com/4ea8be4c8f.js" crossorigin="anonymous"></script>
+</head>
+<body class="min-h-full">
+{% include 'navbar.html' %}
+{% include 'show_messages.html' %}
+<main class="pt-16">
+    {% block content %}
+    {% endblock content %}
+</main>
+
+<script src="{% static 'flowbite/flowbite.min.js' %}"></script>
+
+</body>
+</html>

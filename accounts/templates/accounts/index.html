@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block title %}Index{% endblock title %}
+{% block content %}
+    <div class="flex flex-col justify-center items-center mt-16">
+        <h1 class="text-2xl text-center font-semibold">Welcome to the latest and the most interesting articles on the
+            net!</h1>
+        <h2 class="text-center text-lg leading-relaxed mt-6">Explore our valuable collections and carefully curated of
+            the contents. Enrich your knowledge and skills from the most technology trends adopted.</h2>
+        <a href="{% url 'accounts:register' %}" class="mt-8 px-8 py-4 rounded-xl text-xl bg-emerald-600 text-white">Let's
+            Get Started</a>
+    </div>
+{% endblock content %}

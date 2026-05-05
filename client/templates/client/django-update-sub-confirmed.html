@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block title %}Django Update Confirm{% endblock title %}
+{% block content %}
+    <div class="container mt-16 mx-auto rounded-2xl p-12 bg-amber-100 text-black border-2 border-amber-200 shadow-2xl">
+        <div class="flex flex-col justify-center items-center space-y-6">
+            <h1 class="text-2xl font-semibold">FINAL APPROVAL COMPLETE</h1>
+            <p class="text-xl font-semibold"><i class="fa-regular fa-circle-check"></i>Your subscription has been updated & approved successfully.</p>
+            <p>Your request to update your subscription has been confirmed on PayPal!</p>
+            <a href="{% url 'client:client-dashboard' %}"
+               class="px-6 py-4 text-white rounded-xl text-center bg-sky-700">Return to Dashboard</a>
+        </div>
+    </div>
+{% endblock content %}

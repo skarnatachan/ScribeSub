@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Email Verification Sent{% endblock title %}
+{% block content %}
+    <div class="container md:h-screen flex items-center justify-center mx-auto">
+        <div class="text-center bg-gray-600 text-white p-12 rounded-lg">
+            <div class="flex justify-center mb-6">
+                <i class="fa-solid fa-envelope fa-3x"></i>
+            </div>
+            <h1 class="text-xl font-semibold">A verification link was sent to your email!</h1>
+            <hr class="my-4">
+            <p class="text-base">Please check your email.</p>
+        </div>
+    </div>
+{% endblock content %}
