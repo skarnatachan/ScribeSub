@@ -18,8 +18,8 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
-# CSRF_TRUSTED_ORIGINS = []
+ALLOWED_HOSTS = ['https://scribesub.onrender.com', '*']
+CSRF_TRUSTED_ORIGINS = ['https://scribesub.onrender.com']
 # CORS_ALLOWED_ORIGINS = []
 
 # Application definition
